@@ -2142,6 +2142,9 @@ pub trait WebViewExtMacOS {
   fn ns_window(&self) -> Retained<NSWindow>;
   /// Attaches this webview to the given NSWindow and removes it from the current one.
   fn reparent(&self, window: *mut NSWindow) -> Result<()>;
+
+  fn activate(&self) -> Result<()>;
+
   /// Prints with extra options
   fn print_with_options(&self, options: &PrintOptions) -> Result<()>;
   /// Move the window controls to the specified position.
@@ -2168,6 +2171,10 @@ impl WebViewExtMacOS for WebView {
 
   fn reparent(&self, window: *mut NSWindow) -> Result<()> {
     self.webview.reparent(window)
+  }
+
+  fn activate(&self) -> Result<()> {
+    self.webview.activate()
   }
 
   fn print_with_options(&self, options: &PrintOptions) -> Result<()> {
